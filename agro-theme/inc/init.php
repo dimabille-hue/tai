@@ -3,6 +3,7 @@
 $includes = [
     '/inc/cpt/property.php',
     '/inc/cpt/unit.php',
+    '/inc/carbon-fields.php',
 ];
 
 foreach ( $includes as $file ) {
