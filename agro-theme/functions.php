@@ -40,6 +40,9 @@ function agro_widgets_init() {
 }
 add_action( 'widgets_init', 'agro_widgets_init' );
 
+// Load internal includes (CPTs, helpers)
+require_once get_template_directory() . '/inc/init.php';
+
 // Secure output helpers
 function agro_esc_attr( $str ) {
     return esc_attr( $str );
