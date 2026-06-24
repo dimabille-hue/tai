@@ -1,29 +1,39 @@
 /*
-Place webfont files from the project's logobook here (WOFF/WOFF2/TTF). Example file names:
- - assets/fonts/Inter-Regular.woff2
- - assets/fonts/Inter-Medium.woff2
- - assets/fonts/Montserrat-SemiBold.woff2
-
-This stylesheet attempts to load local webfonts (if present) and otherwise falls back to Google Fonts.
-Replace font-family names and src URLs to match actual font files from the logobook.
+Fonts stylesheet updated to include common possible font formats (.woff2/.woff/.ttf/.otf).
+Please rename the actual files in assets/fonts/ to match the font-family src URLs below, or edit this file to match the real file names.
 */
 
 @font-face {
   font-family: 'LogobookPrimary';
   src: url('../fonts/LogobookPrimary-Regular.woff2') format('woff2'),
-       url('../fonts/LogobookPrimary-Regular.woff') format('woff');
+       url('../fonts/LogobookPrimary-Regular.woff') format('woff'),
+       url('../fonts/LogobookPrimary-Regular.ttf') format('truetype'),
+       url('../fonts/LogobookPrimary-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'LogobookPrimary';
-  src: url('../fonts/LogobookPrimary-SemiBold.woff2') format('woff2');
+  src: url('../fonts/LogobookPrimary-SemiBold.woff2') format('woff2'),
+       url('../fonts/LogobookPrimary-SemiBold.woff') format('woff'),
+       url('../fonts/LogobookPrimary-SemiBold.ttf') format('truetype'),
+       url('../fonts/LogobookPrimary-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
-/* If no local fonts are present, site will use Google Fonts loaded in functions.php */
+/* Secondary UI font */
+@font-face {
+  font-family: 'LogobookSecondary';
+  src: url('../fonts/LogobookSecondary-Regular.woff2') format('woff2'),
+       url('../fonts/LogobookSecondary-Regular.woff') format('woff'),
+       url('../fonts/LogobookSecondary-Regular.ttf') format('truetype'),
+       url('../fonts/LogobookSecondary-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-body, button, input, textarea { font-family: 'LogobookPrimary', 'Montserrat', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+body, button, input, textarea { font-family: 'LogobookPrimary', 'LogobookSecondary', 'Montserrat', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }

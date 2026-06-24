@@ -19,15 +19,23 @@ if ( ! function_exists( 'agro_setup' ) ) {
 add_action( 'after_setup_theme', 'agro_setup' );
 
 function agro_enqueue_assets() {
-    // Fonts: preferred local fonts (from logobook) or fall back to Google
-    // If you placed local webfonts in assets/fonts/, fonts.css will load them.
+    // Detect local fonts: if any font files exist in assets/fonts, prefer local fonts and skip Google Fonts
+    $font_files = glob( get_template_directory() . '/assets/fonts/*.{woff2,woff,ttf,otf}', GLOB_BRACE );
+    $use_local_fonts = ! empty( $font_files );
+
+    // Fonts: local fonts stylesheet (attempts to load any local fonts you added)
     wp_enqueue_style( 'agro-theme-fonts', get_template_directory_uri() . '/assets/css/fonts.css', array(), '1.0' );
 
-    // Google Fonts fallback (used if local fonts are not installed)
-    wp_enqueue_style( 'agro-theme-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;600&display=swap', array(), null );
+    // Google Fonts fallback only if no local fonts detected
+    if ( ! $use_local_fonts ) {
+        wp_enqueue_style( 'agro-theme-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;600&display=swap', array(), null );
+        $deps = array( 'agro-theme-google-fonts', 'agro-theme-fonts' );
+    } else {
+        $deps = array( 'agro-theme-fonts' );
+    }
 
     // Styles
-    wp_enqueue_style( 'agro-theme-style', get_stylesheet_uri(), array( 'agro-theme-google-fonts', 'agro-theme-fonts' ), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'agro-theme-style', get_stylesheet_uri(), $deps, wp_get_theme()->get( 'Version' ) );
     wp_enqueue_style( 'agro-theme-main', get_template_directory_uri() . '/assets/css/theme.css', array(), '1.0' );
 
     // Scripts (no jQuery forced)

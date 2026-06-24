@@ -1,10 +1,7 @@
-README — fonts
+Fonts and logo added by user in repo:
 
-This folder should contain webfont files exported from your logobook (WOFF2 recommended).
+- Please verify that your font files in assets/fonts/ are named to match the entries in assets/css/fonts.css.
+  - Example expected names: LogobookPrimary-Regular.ttf, LogobookPrimary-SemiBold.ttf, LogobookSecondary-Regular.ttf
+  - If your files have different names, either rename them or edit assets/css/fonts.css to point to the actual filenames.
 
-Steps to include fonts from the logobook:
-1. Export or obtain WOFF2 (and WOFF or TTF as fallback) files for the primary logobook fonts.
-2. Place them in assets/fonts/ and name them to match the entries in assets/css/fonts.css, or edit fonts.css to match the actual file names.
-3. The theme will attempt to load local fonts first. If local fonts are absent, Google Fonts loaded in functions.php will be used as a fallback.
-
-Recommended formats: WOFF2, then WOFF. For licensing reasons, ensure you have rights to host the fonts.
+- Vector logo files (.ai / .eps) were placed in assets/img/. Those are source vectors for designers — browsers cannot display .ai/.eps directly. If you need the logo rendered on the site, please also provide an exported SVG or PNG/JPG in assets/img/ (e.g., logo.svg, logo.png). I left a placeholder icons.svg for site icons and the logo placeholders reference header image via custom logo support.
